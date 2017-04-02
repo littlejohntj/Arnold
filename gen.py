@@ -6,9 +6,9 @@ from selenium import webdriver
 #userName=raw_input('Username: ')
 #password=raw_input('Password: ')
 
-email='o1367179@mvrht.com'
+email='ifisjisfjis@mvrht.com'
 fullName='Alice Bulb'
-userName='bearupdown123b'
+userName='i1out2pdogcat'
 password='Password123!'
 
 browser = webdriver.Chrome()
@@ -21,18 +21,27 @@ form = browser.find_element_by_class_name('_3bqd5')
 formFields = browser.find_elements_by_class_name('_qy55y')
 
 emailField = formFields[0]
-emailField.send_keys(email)
+for letter in email:
+	emailField.send_keys(letter)
+	time.sleep(1)
 time.sleep(2)
 
 nameField = formFields[1]
-nameField.send_keys(fullName)
-
-userNameField = formFields[2]
-userNameField.send_keys(userName)
+for letter in fullName:
+	nameField.send_keys(letter)
+	time.sleep(1)
 time.sleep(3)
 
+userNameField = formFields[2]
+for letter in userName:
+	userNameField.send_keys(letter)
+	time.sleep(1)
+time.sleep(2)
+
 passwordField = formFields[3]
-passwordField.send_keys(password)
+for letter in password:
+	passwordField.send_keys(letter)
+	time.sleep(1)
 time.sleep(4)
 
 browser.find_elements_by_class_name("_1on88")[1].click()
