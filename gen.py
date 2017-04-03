@@ -1,16 +1,21 @@
 import time
-from selenium import webdriver
 import random
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 
-#email=raw_input('Email: ')
-#fullName=raw_input('Full Name: ')
-#userName=raw_input('Username: ')
-#password=raw_input('Password: ')
+def verifyPhone():
+    phoneField = browser.find_element_by_id('id_phone_number')
+    for number in phone:
+        phoneField.send_keys(number)
+        time.sleep(random.choice(nums))
+    time.sleep(random.choice(nums2))
+    browser.find_element_by_class_name('button-green').click()
 
-email='gofia29fjsdoifu3@gmail.com'
+email='7assdfs8dygu3@gmail.com'
 fullName='The Kid'
-userName='fsdf87ygow803fdsu'
+userName='cdsidg89sm832u'
 password='Password123!'
+phone='+19542801018'
 
 nums = [0.4,1.1,1.8,2.4,3.2]
 nums2 = [6,8,9,10,12]
@@ -49,18 +54,15 @@ for letter in password:
 	time.sleep(random.choice(nums))
 time.sleep(random.choice(nums2))
 
-browser.find_elements_by_class_name("_1on88")[1].click()
+browser.find_elements_by_class_name('_1on88')[1].click()
+time.sleep(10)
 
-#search_box = browser.find_element_by_name('q')
-#search_box.send_keys('ChromeDriver')
-#search_box.submit()
+try:
+    verifyPhone()
+except NoSuchElementException:
+    time.sleep(10)
+    browser.quit()
 
-
-#time.sleep(3) #sleep for 3 seconds
-
-
-time.sleep(5)
-#browser.quit()
-
+    
 
 
