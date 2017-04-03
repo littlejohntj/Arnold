@@ -48,7 +48,7 @@ for letter in password:
 	time.sleep(random.choice(nums))
 time.sleep(random.choice(nums))
 
-browser.find_elements_by_class_name("_1on88")[1].click()
+#browser.find_elements_by_class_name("_1on88")[1].click()
 
 #search_box = browser.find_element_by_name('q')
 #search_box.send_keys('ChromeDriver')
