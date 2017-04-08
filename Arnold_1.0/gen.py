@@ -11,9 +11,9 @@ def verifyPhone():
     time.sleep(random.choice(nums2))
     browser.find_element_by_class_name('button-green').click()
 
-email='7assdfs8dygu3@gmail.com'
+email='7asdfuih823gu3@gmail.com'
 fullName='The Kid'
-userName='cdsidg89sm832u'
+userName='csmdf8ujio2qf2u'
 password='Password123!'
 phone='+19542801018'
 
