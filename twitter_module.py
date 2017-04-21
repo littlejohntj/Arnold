@@ -6,6 +6,7 @@ from __future__ import print_function
 import twitter
 from datetime import datetime
 from email.utils import parsedate_tz, mktime_tz
+import textwrap
 
 
 def convert_time(datestring):
@@ -15,20 +16,22 @@ def convert_time(datestring):
 
 
 def print_timeline(status):
-    # modifies header length based on screen_name length
-    dash = ""
-    for i in range(0, len(status.user.screen_name)):
-        dash = dash + "-"
+    header = str(status.user.screen_name) + " | " + str(convert_time(status.created_at)) + " | " + "Likes: " \
+           + str(status.favorite_count) + " | " + "Retweets: " + str(status.retweet_count) + " | "
 
-    # print(status)
-    print("\n--------------------------------------------------" + str(dash))
-    print(status.user.screen_name, "| ", end="")
-    print(convert_time(status.created_at), "| ", end="")
-    print("Likes:", status.favorite_count, "| ", end="")
-    print("Retweets:", status.retweet_count, "| ")
-    print("--------------------------------------------------" + str(dash))
+    divider = ""
+    for i in range(1, len(header)):
+        divider = divider + "-"
+
+    if len(status.text) > len(divider):
+        status.text = textwrap.fill(status.text, len(divider))
+
+    print(divider)
+    print(header)
+    print(divider)
     print(status.text)
-    print("--------------------------------------------------" + str(dash))
+    print(divider)
+    print("\n")
 
 
 def get_timeline(api):
@@ -38,5 +41,4 @@ def get_timeline(api):
 
 
 if __name__ == "__main__":
-    get_timeline()
-
+    get_timeline(api)
