@@ -7,15 +7,6 @@ import twitter
 from datetime import datetime
 from email.utils import parsedate_tz, mktime_tz
 
-# generate user OAuth tokens for here
-
-"""
-api = twitter.Api(consumer_key="***REMOVED***",
-                  consumer_secret="***REMOVED***",
-                  access_token_key="***REMOVED***",
-                  access_token_secret="***REMOVED***")
-"""
-
 
 def convert_time(datestring):
     timestamp = mktime_tz(parsedate_tz(datestring))
