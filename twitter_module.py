@@ -9,10 +9,12 @@ from email.utils import parsedate_tz, mktime_tz
 
 # generate user OAuth tokens for here
 
+"""
 api = twitter.Api(consumer_key="***REMOVED***",
                   consumer_secret="***REMOVED***",
                   access_token_key="***REMOVED***",
                   access_token_secret="***REMOVED***")
+"""
 
 
 def convert_time(datestring):
@@ -38,7 +40,7 @@ def print_timeline(status):
     print("--------------------------------------------------" + str(dash))
 
 
-def get_timeline():
+def get_timeline(api):
     data = api.GetHomeTimeline(count=3)
     for status in data:
         print_timeline(status)
