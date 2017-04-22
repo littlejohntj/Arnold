@@ -10,7 +10,6 @@ import oauth2 as oauth
 import twitter
 import praw
 from InstagramAPI import InstagramAPI
-import getpass
 
 # Twitter
 class Twitter_Auth():
