@@ -89,7 +89,7 @@ def print_timeline(reddit):
 		print(divider)
 		print(submission.title)
 		#print(divider)
-		print(submission.short_link)
+		print(submission.url)
 		print(divider)
 		#comment out the next line, if the top two comments aren't desired
 		top_two_comments(submission, divider)
