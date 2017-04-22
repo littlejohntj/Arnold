@@ -7,6 +7,7 @@ Quickie Media - Reddit (Arnold 2.0)
 import time
 import praw
 import textwrap
+from praw.models import MoreComments
 
 def convert_time(datestring):
     timestamp = time.localtime(datestring)
