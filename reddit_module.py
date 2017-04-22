@@ -57,9 +57,9 @@ def top_two_comments(submission, divider):
 				print(comment.body[:limit-6])
 			else:
 				print(comment.body)
-			link = str(comment.permalink)
-			if len(link) > len(divider):
-				link = textwrap.fill(link, len(divider))
+			link = str(comment.permalink())
+			if len('REST OF COMMENT AT: ' + link) > len(divider):
+				link = textwrap.fill('REST OF COMMENT AT: ' + link, len(divider))
 			print(link)
 			if comments[i+1]!=0:
 				print(divider)
