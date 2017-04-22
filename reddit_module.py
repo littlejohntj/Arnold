@@ -58,8 +58,10 @@ def top_two_comments(submission, divider):
 			else:
 				print(comment.body)
 			link = str(comment.permalink())
-			if len('REST OF COMMENT AT: ' + link) > len(divider):
-				link = textwrap.fill('REST OF COMMENT AT: ' + link, len(divider))
+			
+
+			if len('FULL COMMENT LINK: https://www.reddit.com' + link) > len(divider):
+				link = textwrap.fill('FULL COMMENT LINK: https://www.reddit.com' + link, len(divider))
 			print(link)
 			if comments[i+1]!=0:
 				print(divider)
