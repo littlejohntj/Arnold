@@ -9,7 +9,8 @@ import getpass
 import oauth2 as oauth
 import twitter
 import praw
-from InstagramAPI import InstagramAPI 
+from InstagramAPI import InstagramAPI
+import getpass
 
 # Twitter
 class Twitter_Auth():
@@ -20,7 +21,7 @@ class Twitter_Auth():
         self.access_token_url = 'https://api.twitter.com/oauth/access_token'
         self.authorize_url = 'https://api.twitter.com/oauth/authorize'
         self.request_token = self.get_request_token()
-    
+
     def get_request_token(self):
         """Returns dict containing request oauth token and token secret"""
         self.consumer = oauth.Consumer(self.consumer_key, self.consumer_secret)
@@ -40,17 +41,17 @@ class Twitter_Auth():
         print("%s?oauth_token=%s" % (self.authorize_url, self.request_token['oauth_token']))
         print()
         self.oauth_verifier = raw_input("Please enter the authorization pin: ")
-        
+
         self.user_token = oauth.Token(self.request_token['oauth_token'],
             self.request_token['oauth_token_secret'])
-        
+
         self.user_token.set_verifier(self.oauth_verifier)
         self.client = oauth.Client(self.consumer, self.user_token)
         self.response, self.content = self.client.request(self.access_token_url, "POST")
 
-        self.user_access_tokens = dict(urlparse.parse_qsl(self.content))       
+        self.user_access_tokens = dict(urlparse.parse_qsl(self.content))
 
-        # Create instance of Twitter API with proper authorized tokens 
+        # Create instance of Twitter API with proper authorized tokens
         api = twitter.Api(
             self.consumer_key,
             self.consumer_secret,
@@ -59,3 +60,53 @@ class Twitter_Auth():
         )
 
         return api
+
+
+#Instagram
+class Instagram_Auth():
+    def __init__(self):
+        self.consumer_key= instagram_consumer_key
+        self.consumer_secret= instagram_consumer_secret
+
+    def get_authorized_user(self):
+        '''Handles authorizing the user for Arnold'''
+        print("Authorize Arnold on your Instagram Account")
+        print("--------------------------------------------------")
+        self.user_name = raw_input("Username: ")
+        self.password=getpass.getpass("Password: ")
+
+        # Create instance of Instagram API with proper login
+        api = InstagramAPI(
+            self.user_name,
+            self.password
+        )
+        api.login()
+        return api
+
+
+#Reddit
+class Reddit_Auth():
+    def __init__(self):
+        self.consumer_key=reddit_consumer_key
+        self.consumer_secret=reddit_consumer_secret
+
+    def get_authorized_user(self):
+        '''Handles authorizing the user for Arnold by logging in'''
+        print("Authorize Arnold on your Reddit Account")
+        print("--------------------------------------------------")
+        self.user_name = raw_input("Username: ")
+        self.password=getpass.getpass("Password: ")
+
+
+        # Create instance of Reddit API with proper authorized tokens and login
+        api = praw.Reddit(
+            client_id = self.consumer_key,
+            client_secret = self.consumer_secret,
+            password = self.password,
+            user_agent="testscript for Arnold",
+            username = self.user_name
+        )
+
+        return api
+
+
