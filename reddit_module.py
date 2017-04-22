@@ -27,8 +27,8 @@ def top_two_comments(submission, divider):
 	#sort the comments
 	scores =[0,0]
 	for comment in submission.comments:
-		#if not isinstance(comment, praw.objects.MoreComments):
-		scores = scores+[comment.score]
+		if not isinstance(comment, MoreComments):
+			scores = scores+[comment.score]
 	scores.sort(reverse=True)
 	#print(scores)
 
@@ -36,11 +36,11 @@ def top_two_comments(submission, divider):
 	#'comment[2]' is used for deciding whether to print the divider below
 	comments = [0,0,0]
 	for comment in submission.comments:
-		#if not isinstance(comment, praw.objects.MoreComments):
-		if (comment.score==scores[0]):
-			comments[0]=comment
-		if (comment.score==scores[1]):
-			comments[1]=comment
+		if not isinstance(comment, MoreComments):
+			if (comment.score==scores[0]):
+				comments[0]=comment
+			if (comment.score==scores[1]):
+				comments[1]=comment
 
 	#print the top two comments
 	for i in range(0,2):
