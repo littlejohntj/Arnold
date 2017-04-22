@@ -39,9 +39,6 @@ class Twitter_Auth():
         print("Go to the following url in your browser to authorize Twitter access:")
         print("%s?oauth_token=%s" % (self.authorize_url, self.request_token['oauth_token']))
         print()
-        self.authorized = 'n'
-        while self.authorized.lower() != 'y':
-            self.authorized = raw_input("Do you have your authorization pin? (y/n): ")
         self.oauth_verifier = raw_input("Please enter the authorization pin: ")
         
         self.user_token = oauth.Token(self.request_token['oauth_token'],
@@ -52,7 +49,8 @@ class Twitter_Auth():
         self.response, self.content = self.client.request(self.access_token_url, "POST")
 
         self.user_access_tokens = dict(urlparse.parse_qsl(self.content))       
- 
+
+        # Create instance of Twitter API with proper authorized tokens 
         api = twitter.Api(
             self.consumer_key,
             self.consumer_secret,
