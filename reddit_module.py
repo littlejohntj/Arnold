@@ -70,7 +70,7 @@ def top_two_comments(submission, divider):
 
 #reddit = praw.Reddit(user_agent='arnold')
 def print_timeline(reddit):
-	submissions = reddit.subreddit('all').hot(limit = 3)
+	submissions = reddit.front.hot(limit = 3)
 
 	for submission in submissions:
 		#pprint(vars(submission)) #pretty prints all variables with their values
