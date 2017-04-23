@@ -26,6 +26,7 @@ def print_timeline(status):
     if len(status.text) > len(divider):
         status.text = textwrap.fill(status.text, len(divider))
 
+    print("TWITTER")
     print(divider)
     print(header)
     print(divider)
