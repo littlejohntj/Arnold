@@ -1,10 +1,8 @@
 from __future__ import print_function
-from uuid import uuid4
 from keys import *
 import pprint
 import requests
 import urlparse
-import urllib
 import getpass
 import oauth2 as oauth
 import twitter
