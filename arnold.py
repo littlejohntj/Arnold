@@ -9,49 +9,77 @@ from reddit_module import *
 class Arnold():
     print("Welcome to Arnold, your top social media feeds all in one place!")
 
+    def __init__(self):
+        self.instagramAuthed=False
+        self.redditAuthed=False
+        self.twitterAuthed=False
     def menu(self):
         print("What would you like to do:")
         print("\t1.Add an account.")
         print("\t2.View your aggregate feed.")
         print("\t3.View a single feed.")
+        print("\t4.Quit.")
         input = raw_input("Please select a number: ")
-        if input != 1 or input != 2 or input != 3:
+        input=int(input)
+        if input == 1 or input == 2 or input == 3:
+            self.second_menu(input)
+        elif input == 4:
+            print("Goodbye!")
+            quit()
+        else:
             print("Invalid input!")
             self.menu()
-        else:
-            return self.second_menu(input)
-    
+
     def second_menu(self, input):
         if input == 1:
+            #Adding a single social media account
             print("Which social media account would you like to add: ")
             print("\t1.Reddit")
             print("\t2.Instagram")
             print("\t3.Twitter")
             input = raw_input("Please select a number: ")
+            input=int(input)
             if input == 1:
-                self.add_reddit_account()
+                self.add_reddit_account() #Assuming there's error checking in here to make sure an authenticated account is always returned
+                self.redditAuthed=True
+                self.menu()
             if input == 2:
                 self.add_instagram_account()
+                self.instagramAuthed = True
+                self.menu()
             if input == 3:
                 self.add_twitter_account()
+                self.twitterAuthed = True
+                self.menu()
             else:
                 print("Invalid input!")
                 self.second_menu(1)
         elif input == 2:
             # print aggregate feed here
-            self.get_reddit()
-            self.get_instagram()
-            self.get_twitter()
+            if not self.twitterAuthed and not self.redditAuthed and not self.instagramAuthed:
+                print("Please authenticate an account if you'd like to see your aggregate feed.")
+                self.second_menu(1)
+            if self.redditAuthed:
+                self.get_reddit()
+            if self.instagramAuthed:
+                self.get_instagram()
+            if self.twitterAuthed:
+                self.get_twitter()
             self.menu()
         elif input == 3:
+            #getting feed for single social media
             print("Which feed would you like to view: ")
             print("\t1.Reddit")
             print("\t2.Instagram")
             print("\t3.Twitter")
             input = raw_input("Please select a number: ")
-            if input != 1 or input != 2 or input != 3:
+            input=int(input)
+            if input != 1 and input != 2 and input != 3:
                 print("Invalid input!")
                 self.second_menu(3)
+            elif not self.twitterAuthed and not self.redditAuthed and not self.instagramAuthed:
+                print("Please authenticate an account if you'd like to see your aggregate feed.")
+                self.second_menu(1)
             else:
                 self.get_single_timeline(input)
                 self.menu()
@@ -99,8 +127,10 @@ class Arnold():
             self.get_reddit()
         elif choice == 3:
             self.get_twitter()
-        self.menu()
+
 
 
 if __name__ == "__main__":
-    Arnold()
+    prog=Arnold()
+    prog.menu()
+
