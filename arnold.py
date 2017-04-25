@@ -8,6 +8,8 @@ from instagram_module import *
 # they want to authorize.
 class Arnold():
     print("Welcome to Arnold, your top social media feeds all in one place!")
+    print("----------------------------------------------------------------")
+
 
     def __init__(self):
         self.instagramAuthed=False
@@ -15,22 +17,27 @@ class Arnold():
         self.twitterAuthed=False
         
     def menu(self):
+        print("")
         print("What would you like to do:")
         print("\t1.Add an account.")
         print("\t2.View your aggregate feed.")
         print("\t3.View a single feed.")
         print("\t4.Quit.")
         input = raw_input("Please select a number: ")
+        print("")
         input=int(input)
         if input == 1 or input == 2 or input == 3:
             self.second_menu(input)
         elif input == 4:
+
             print("Goodbye!")
             quit()
         else:
+            print("----------------------")
             print("Invalid input!")
+            print("----------------------")
             self.menu()
-
+    
     def second_menu(self, input):
         if input == 1:
             #Adding a single social media account
@@ -39,6 +46,7 @@ class Arnold():
             print("\t2.Instagram")
             print("\t3.Twitter")
             input = raw_input("Please select a number: ")
+            print("")
             input=int(input)
             if input == 1:
                 self.add_reddit_account() #Assuming there's error checking in here to make sure an authenticated account is always returned
@@ -53,12 +61,18 @@ class Arnold():
                 self.twitterAuthed = True
                 self.menu()
             else:
+                print("----------------------")
                 print("Invalid input!")
+                print("----------------------")
                 self.second_menu(1)
         elif input == 2:
             # print aggregate feed here
             if not self.twitterAuthed and not self.redditAuthed and not self.instagramAuthed:
-                print("Please authenticate an account if you'd like to see your aggregate feed.")
+
+                print(" --------------------------------------------------------------------------")
+                print("| Please authenticate an account if you'd like to see your aggregate feed. |")
+                print(" --------------------------------------------------------------------------")
+                print("")
                 self.second_menu(1)
             if self.redditAuthed:
                 self.get_reddit()
@@ -74,12 +88,19 @@ class Arnold():
             print("\t2.Instagram")
             print("\t3.Twitter")
             input = raw_input("Please select a number: ")
+            print("")
             input=int(input)
             if input != 1 and input != 2 and input != 3:
+                print("----------------------")
                 print("Invalid input!")
+                print("----------------------")
+                print("")
                 self.second_menu(3)
             elif not self.twitterAuthed and not self.redditAuthed and not self.instagramAuthed:
-                print("Please authenticate an account if you'd like to see your aggregate feed.")
+                print(" -------------------------------------------------------------------------- ")
+                print("| Please authenticate an account if you'd like to see your aggregate feed. |")
+                print(" -------------------------------------------------------------------------- ")
+                print("")
                 self.second_menu(1)
             else:
                 self.get_single_timeline(input)
@@ -109,15 +130,23 @@ class Arnold():
     # Call get_timeline(twitter_api) to get the users twitter timeline
     def get_twitter(self):
         get_timeline(self.twitter_api)
+        print("")
 
 
     # Call TJs function to display user feed and pass instagram_api as a parameter
     def get_instagram(self):
+<<<<<<< HEAD
+        # TJ's call?
+        print("")
+        5+2
+=======
         get_recent_posts(self.instagram_api)
+>>>>>>> ffebd0bc5c0a6dcaf75f6cca578a4265ba06fdfb
 
     # Call katies print_timeline(reddit_api) to display users reddit timeline
     def get_reddit(self):
         print_timeline(self.reddit_api)
+        print("")
 
 
     def get_single_timeline(self, choice):
@@ -133,4 +162,4 @@ class Arnold():
 if __name__ == "__main__":
     prog=Arnold()
     prog.menu()
-
+    
