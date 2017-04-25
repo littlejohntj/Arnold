@@ -2,7 +2,7 @@ from __future__ import print_function
 from auth import Twitter_Auth, Reddit_Auth, Instagram_Auth
 from twitter_module import *
 from reddit_module import *
-
+from instagram_module import *
 
 # Have some sort of user menu to let the user pick which accounts
 # they want to authorize.
@@ -112,8 +112,7 @@ class Arnold():
 
     # Call TJs function to display user feed and pass instagram_api as a parameter
     def get_instagram(self):
-        # TJ's call?
-        5+2
+        get_recent_posts(self.instagram_api)
 
     # Call katies print_timeline(reddit_api) to display users reddit timeline
     def get_reddit(self):
