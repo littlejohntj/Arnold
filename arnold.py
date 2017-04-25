@@ -135,13 +135,8 @@ class Arnold():
 
     # Call TJs function to display user feed and pass instagram_api as a parameter
     def get_instagram(self):
-<<<<<<< HEAD
-        # TJ's call?
-        print("")
-        5+2
-=======
         get_recent_posts(self.instagram_api)
->>>>>>> ffebd0bc5c0a6dcaf75f6cca578a4265ba06fdfb
+        print("")
 
     # Call katies print_timeline(reddit_api) to display users reddit timeline
     def get_reddit(self):

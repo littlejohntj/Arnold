@@ -69,7 +69,7 @@ class Instagram_Auth():
         self.consumer_secret= instagram_consumer_secret
 
     def get_authorized_user(self):
-        '''Handles authorizing the user for Arnold'''
+        """Returns ready to use api object with access token and user access token secret"""
         print("Authorize Arnold on your Instagram Account")
         print("--------------------------------------------------")
         self.user_name = raw_input("Username: ")
@@ -94,9 +94,7 @@ class Reddit_Auth():
 
     def receive_connection(self):
         """Wait for and then return a connected socket..
-
         Opens a TCP connection on port 8080, and waits for a single client.
-
         """
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -109,12 +107,12 @@ class Reddit_Auth():
 
     def send_message(self, client, message):
         """Send message to client and close the connection."""
-        print(message)
         client.send('HTTP/1.1 200 OK\r\n\r\n{}'.format(message).encode('utf-8'))
         client.close()
 
 
     def get_refresh_token(self):
+        """Get and return user refresh token upon authorization"""
         scopes = ['history', 'identity', 'mysubreddits', 'read']
 
         reddit = praw.Reddit(client_id = self.consumer_key,
@@ -149,7 +147,7 @@ class Reddit_Auth():
     
 
     def get_authorized_user(self):
-        '''Handles authorizing the user for Arnold by logging in'''
+        """Returns ready to use api object with access token and user access token secret"""
         print("Authorize Arnold on your Reddit Account")
         print("--------------------------------------------------")
         refresh_token = self.get_refresh_token()
@@ -159,7 +157,6 @@ class Reddit_Auth():
                              client_secret = self.consumer_secret,
                              refresh_token = refresh_token,
                              user_agent = 'Arnold')
-        print(api.user.me())
 
         return api
 
