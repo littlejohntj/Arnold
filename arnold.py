@@ -74,12 +74,12 @@ class Arnold():
                 print(" --------------------------------------------------------------------------")
                 print("")
                 self.second_menu(1)
+            if self.twitterAuthed:
+                self.get_twitter()
             if self.redditAuthed:
                 self.get_reddit()
             if self.instagramAuthed:
                 self.get_instagram()
-            if self.twitterAuthed:
-                self.get_twitter()
             self.menu()
         elif input == 3:
             #getting feed for single social media
