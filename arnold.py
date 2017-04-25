@@ -13,6 +13,7 @@ class Arnold():
         self.instagramAuthed=False
         self.redditAuthed=False
         self.twitterAuthed=False
+        
     def menu(self):
         print("What would you like to do:")
         print("\t1.Add an account.")
